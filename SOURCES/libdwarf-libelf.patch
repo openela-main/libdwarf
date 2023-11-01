@@ -1,0 +1,28 @@
+commit 93298e0655b2196380b9996d8a20ef06b8a681b3
+Author: Tom Hughes <tom@compton.nu>
+Date:   Tue Jan 23 09:14:33 2018 +0000
+
+    Link libdwarf against libelf
+
+diff --git a/libdwarf/Makefile.in b/libdwarf/Makefile.in
+index 355d2df..21e0046 100644
+--- a/libdwarf/Makefile.in
++++ b/libdwarf/Makefile.in
+@@ -49,7 +49,7 @@ AR =		@AR@
+ RM =		rm
+ RANLIB =	@RANLIB@
+ DEFS =		@DEFS@
+-LIBS =		@LIBS@
++LIBS =		@LIBS@ -lelf
+ INCLUDES =	-I. -I$(srcdir)
+ dwfpic =        @dwfpic@
+ dwfwall =       @dwfwall@
+@@ -57,7 +57,7 @@ dwfsanitize =   @dwfsanitize@
+ dwfzlib =       @dwfzlib@
+ SONAME =        libdwarf.so.1
+ CFLAGS =	$(PREINCS) @CPPFLAGS@ @CFLAGS@ $(INCLUDES) $(dwfpic) $(dwfwall) $(dwfsanitize)  $(POSTINCS)
+-LDFLAGS =	$(PRELIBS) @LDFLAGS@ $(dwfsanitize) $(POSTLIBS) 
++LDFLAGS =	$(PRELIBS) @LDFLAGS@ $(LIBS) $(dwfsanitize) $(POSTLIBS) 
+ HOSTCFLAGS =	$(CFLAGS)
+ HOSTLDFLAGS =	$(PRELIBS) @LDFLAGS@ 
+ 
